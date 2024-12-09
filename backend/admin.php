@@ -12,39 +12,34 @@
         </tbody>
     </table>
     <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-        <p class="t cent botli">動畫圖片管理</p>
+        <p class="t cent botli">管理者帳號管理</p>
         <form method="post" action="./api/edit.php">
-            <table width="100%" class='cent'>
+            <table width="100%">
                 <tbody>
                     <tr class="yel">
-                        <td width="70%">動畫圖片</td>
-                        <td width="10%">顯示</td>
+                        <td width="45%">帳號</td>
+                        <td width="45%">密碼</td>
                         <td width="10%">刪除</td>
-                        <td></td>
                     </tr>
                     <?php
-                    $rows=$Mvim->all();
+                    $rows=$Admin->all();
                     foreach($rows as $row){
+                        
                     ?>
                     <tr>
                         <td>
-                            <img src="./upload/<?=$row['img'];?>" style="width:120px;height:80px;">
+                            <input type="text" name="acc[]" value="<?=$row['acc'];?>">
                         </td>
                         <td>
-                            <input type="checkbox" name="sh[]" value="<?=$row['id'];?>"
-                                <?=($row['sh']==1)?'checked':'';?>>
+                            <input type="password" name="pw[]" value="<?=$row['pw'];?>">
                         </td>
                         <td>
                             <input type="checkbox" name="del[]" value="<?=$row['id'];?>">
                         </td>
-                        <td>
-                            <input type="button"
-                                onclick="op('#cover','#cvr','./modal/upload_<?=$do;?>.php?id=<?=$row['id'];?>&table=<?=$do;?>')"
-                                value="更換動畫">
-                        </td>
                         <input type="hidden" name="id[]" value="<?=$row['id'];?>">
                     </tr>
                     <?php
+                        
                     }
                     ?>
                 </tbody>
@@ -55,7 +50,7 @@
                         <td width="200px">
                             <input type="button"
                                 onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./modal/<?=$do;?>.php?table=<?=$do;?>&#39;)"
-                                value="新增動畫圖片">
+                                value="新增管理者帳號">
                         </td>
                         <td class="cent">
                             <input type="hidden" name="table" value="<?=$do;?>">
